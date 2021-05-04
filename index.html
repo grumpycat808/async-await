@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  
+</head>
+
+<body>
+  <script type="text/javascript">
+    function makeRequest(location){
+        return new Promise((resolve, reject) => {
+            //Make ajax request here
+            if(location === "Google") {
+                resolve("Google says hi")
+            } else {
+                reject("We can only make requests to Google");
+            }
+        })
+    }
+
+    function processRequest(response){
+        return new Promise((resolve, reject) => {
+            console.log("Processing response");
+            resolve(`Extra info ${response}`)
+        })
+    }
+
+    makeRequest("Google")
+        .then(processRequest(response))
+        .then((response) => {
+            console.log(`Response from processRequest ${response}`)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+  </script>
+</body>
+</html>
